@@ -29,6 +29,7 @@
   "dependencies": {},
   "devDependencies": {
     "@nrwl/cli": "10.4.4",
+    "@nrwl/node": "^10.4.4",
     "@nrwl/tao": "10.4.4",
     "@nrwl/workspace": "10.4.4",
     "@nx-go/nx-go": "^1.2.3",
