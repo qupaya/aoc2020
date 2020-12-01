@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"aoc/apps/markus/api/src/day1"
 )
 
 func main() {
-	fmt.Println("hello world")
+	day1.Run()
 }
