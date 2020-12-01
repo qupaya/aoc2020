@@ -1,6 +1,36 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "markus-api": {
+      "projectType": "application",
+      "root": "apps/markus/api",
+      "sourceRoot": "apps/markus/api/src",
+      "architect": {
+        "build": {
+          "builder": "@nx-go/nx-go:build",
+          "options": {
+            "outputPath": "dist/apps/markus/api",
+            "main": "apps/markus/api/src/main.go"
+          }
+        },
+        "serve": {
+          "builder": "@nx-go/nx-go:serve",
+          "options": {
+            "cmd": "gow",
+            "main": "apps/markus/api/src/main.go"
+          }
+        },
+        "test": {
+          "builder": "@nx-go/nx-go:test",
+          "options": {
+            "main": "apps/markus/api/src/main_test.go"
+          }
+        },
+        "lint": {
+          "builder": "@nx-go/nx-go:lint"
+        }
+      }
+    }},
   "cli": {
     "defaultCollection": "@nrwl/workspace"
   }
