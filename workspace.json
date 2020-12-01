@@ -30,8 +30,60 @@
           "builder": "@nx-go/nx-go:lint"
         }
       }
-    }},
+    },
+    "johannes-api": {
+      "root": "apps/johannes/api",
+      "sourceRoot": "apps/johannes/api/src",
+      "projectType": "application",
+      "prefix": "johannes-api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/johannes/api",
+            "main": "apps/johannes/api/src/main.ts",
+            "tsConfig": "apps/johannes/api/tsconfig.app.json",
+            "assets": ["apps/johannes/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/johannes/api/src/environments/environment.ts",
+                  "with": "apps/johannes/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "johannes-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/johannes/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/johannes/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/node"
+  },
+  "defaultProject": "johannes-api"
 }
