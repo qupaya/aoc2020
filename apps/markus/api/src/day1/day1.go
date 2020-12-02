@@ -5,12 +5,12 @@ import "fmt"
 // SolveTask1 of day 1
 func SolveTask1(input []int) int {
 	for i, a := range input {
-        for j, b := range input {
-			if i != j && a + b == 2020 {
+		for j, b := range input {
+			if i != j && a+b == 2020 {
 				return a * b
 			}
 		}
-    }
+	}
 
 	return -1
 }
@@ -18,14 +18,14 @@ func SolveTask1(input []int) int {
 // SolveTask2 of day 1
 func SolveTask2(input []int) int {
 	for i, a := range input {
-        for j, b := range input {
+		for j, b := range input {
 			for k, c := range input {
-				if i != j && i != k && j != k && a + b + c == 2020 {
+				if i != j && i != k && j != k && a+b+c == 2020 {
 					return a * b * c
 				}
 			}
 		}
-    }
+	}
 
 	return -1
 }

@@ -6,7 +6,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-
 func TestSolveTask1(t *testing.T) {
 	input := [...]int{
 		1721,
