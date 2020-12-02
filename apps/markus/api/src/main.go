@@ -1,9 +1,8 @@
 package main
 
-import (
-	"aoc/apps/markus/api/src/day1"
-)
+import "aoc/apps/markus/api/src/day2"
 
 func main() {
-	day1.Run()
+	//day1.Run()
+	day2.Run()
 }
