@@ -22,8 +22,22 @@ nx build <app-name>
 
 ### Test
 
+Don't use `nx test` because it currently has a bug that causes it to only run main_test.go.
+
 ```bash
-nx test <app-name>
+# Run all tests
+go test ./...
+
+# with watch
+gow test ./...
+```
+
+```bash
+# Run tests for single package
+go test <relative-path-to-package-folder>
+
+# with watch
+gow test <relative-path-to-package-folder>
 ```
 
 ### Serve (with watch)
