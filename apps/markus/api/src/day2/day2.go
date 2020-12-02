@@ -19,10 +19,10 @@ func SolveTask1(input []string) int {
 		passwordWithoutLetter := strings.Join(strings.Split(password, letter), "")
 		charCount := len(password) - len(passwordWithoutLetter)
 
-		if (charCount >= min && charCount <= max) {
+		if charCount >= min && charCount <= max {
 			count++
 		}
-    }
+	}
 
 	return count
 }
@@ -40,17 +40,17 @@ func SolveTask2(input []string) int {
 		password := s[2]
 
 		foundTimes := 0
-		if (len(password) >= first && password[first - 1] == letter) {
+		if len(password) >= first && password[first-1] == letter {
 			foundTimes++
 		}
-		if (len(password) >= second && password[second - 1] == letter) {
+		if len(password) >= second && password[second-1] == letter {
 			foundTimes++
 		}
 
-		if(foundTimes == 1) {
+		if foundTimes == 1 {
 			count++
 		}
-    }
+	}
 
 	return count
 }
