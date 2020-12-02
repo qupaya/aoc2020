@@ -2,6 +2,8 @@ package day2
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSolveTask1(t *testing.T) {
@@ -12,9 +14,7 @@ func TestSolveTask1(t *testing.T) {
 	}
 
 	result := SolveTask1(input[:])
-	if result != 2 {
-		t.Error("Expected 2 but was", result)
-	}
+	assert.Equal(t, 2, result)
 }
 
 func TestSolveTask2(t *testing.T) {
@@ -25,7 +25,5 @@ func TestSolveTask2(t *testing.T) {
 	}
 
 	result := SolveTask2(input[:])
-	if result != 1 {
-		t.Error("Expected 1 but was", result)
-	}
+	assert.Equal(t, 1, result)
 }
