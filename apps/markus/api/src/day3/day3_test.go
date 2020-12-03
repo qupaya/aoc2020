@@ -9,22 +9,36 @@ import (
 
 func TestSolveTask1(t *testing.T) {
 	input := strings.Fields(`
-    1
-    2
-    3
-  `)
+  ..##.......
+  #...#...#..
+  .#....#..#.
+  ..#.#...#.#
+  .#...##..#.
+  ..#.##.....
+  .#.#.#....#
+  .#........#
+  #.##...#...
+  #...##....#
+  .#..#...#.#`)
 
-	result := SolveTask1(input)
-	assert.Equal(t, -1, result)
+	result := SolveTask1(&input)
+	assert.Equal(t, 7, result)
 }
 
 func TestSolveTask2(t *testing.T) {
 	input := strings.Fields(`
-    1
-    2
-    3
-  `)
+  ..##.......
+  #...#...#..
+  .#....#..#.
+  ..#.#...#.#
+  .#...##..#.
+  ..#.##.....
+  .#.#.#....#
+  .#........#
+  #.##...#...
+  #...##....#
+  .#..#...#.#`)
 
-	result := SolveTask2(input)
-	assert.Equal(t, -1, result)
+	result := SolveTask2(&input)
+	assert.Equal(t, 336, result)
 }
