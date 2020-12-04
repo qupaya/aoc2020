@@ -80,6 +80,56 @@
           }
         }
       }
+    },
+    "peter": {
+      "root": "apps/peter",
+      "sourceRoot": "apps/peter/src",
+      "projectType": "application",
+      "prefix": "peter",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/peter",
+            "main": "apps/peter/src/main.ts",
+            "tsConfig": "apps/peter/tsconfig.app.json",
+            "assets": ["apps/peter/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/peter/src/environments/environment.ts",
+                  "with": "apps/peter/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "peter:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/peter/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/peter/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
