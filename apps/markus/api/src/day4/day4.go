@@ -8,32 +8,44 @@ import (
 	"strings"
 )
 
-// SolveTask1 of day 4
+func parsePassport(input *string) (map[string]string, bool) {
+	fields := strings.Fields(*input)
+
+	if len(fields) < 7 {
+		return nil, false
+	}
+
+	passport := make(map[string]string)
+	sort.Strings(fields)
+	// sort order: 0     1     2     3     4     5     6     7
+	// sort order: "byr","cid","ecl","eyr","hcl","hgt","iyr","pid"
+
+	if len(fields) == 8 {
+		if !strings.HasPrefix(fields[1], "cid") {
+			return nil, false
+		}
+		passport["cid"] = strings.Split(fields[1], ":")[1]
+		fields = append(fields[:1], fields[2:]...)
+	}
+
+	fieldNames := []string{"byr", "ecl", "eyr", "hcl", "hgt", "iyr", "pid"}
+
+	for i, fieldName := range fieldNames {
+		if !strings.HasPrefix(fields[i], fieldName) {
+			return nil, false
+		}
+		passport[fieldName] = strings.Split(fields[i], ":")[1]
+	}
+
+	return passport, true
+}
+
+// SolveTask1 count valid passports
 func SolveTask1(input *[]string) int {
 	count := 0
 
 	for _, maybePassport := range *input {
-		fields := strings.Fields(maybePassport)
-		sort.Strings(fields)
-
-		if len(fields) == 8 &&
-			strings.HasPrefix(fields[0], "byr") &&
-			strings.HasPrefix(fields[1], "cid") &&
-			strings.HasPrefix(fields[2], "ecl") &&
-			strings.HasPrefix(fields[3], "eyr") &&
-			strings.HasPrefix(fields[4], "hcl") &&
-			strings.HasPrefix(fields[5], "hgt") &&
-			strings.HasPrefix(fields[6], "iyr") &&
-			strings.HasPrefix(fields[7], "pid") {
-			count++
-		} else if len(fields) == 7 &&
-			strings.HasPrefix(fields[0], "byr") &&
-			strings.HasPrefix(fields[1], "ecl") &&
-			strings.HasPrefix(fields[2], "eyr") &&
-			strings.HasPrefix(fields[3], "hcl") &&
-			strings.HasPrefix(fields[4], "hgt") &&
-			strings.HasPrefix(fields[5], "iyr") &&
-			strings.HasPrefix(fields[6], "pid") {
+		if _, valid := parsePassport(&maybePassport); valid {
 			count++
 		}
 	}
@@ -41,7 +53,7 @@ func SolveTask1(input *[]string) int {
 	return count
 }
 
-// SolveTask2 of day 4
+// SolveTask2 count valid passports with value evaluation
 func SolveTask2(input *[]string) int {
 	valid4Digits := regexp.MustCompile(`^[0-9]{4}$`)
 	validHgt := regexp.MustCompile(`^[0-9]{3}cm|[0-9]{2}in$`)
@@ -52,47 +64,11 @@ func SolveTask2(input *[]string) int {
 	count := 0
 
 	for _, maybePassport := range *input {
-		fields := strings.Fields(maybePassport)
-		sort.Strings(fields)
-
-		var passport map[string]string
-		passport = make(map[string]string)
-
-		if len(fields) == 8 &&
-			strings.HasPrefix(fields[0], "byr") &&
-			strings.HasPrefix(fields[1], "cid") &&
-			strings.HasPrefix(fields[2], "ecl") &&
-			strings.HasPrefix(fields[3], "eyr") &&
-			strings.HasPrefix(fields[4], "hcl") &&
-			strings.HasPrefix(fields[5], "hgt") &&
-			strings.HasPrefix(fields[6], "iyr") &&
-			strings.HasPrefix(fields[7], "pid") {
-			passport["byr"] = strings.Split(fields[0], ":")[1]
-			passport["cid"] = strings.Split(fields[1], ":")[1]
-			passport["ecl"] = strings.Split(fields[2], ":")[1]
-			passport["eyr"] = strings.Split(fields[3], ":")[1]
-			passport["hcl"] = strings.Split(fields[4], ":")[1]
-			passport["hgt"] = strings.Split(fields[5], ":")[1]
-			passport["iyr"] = strings.Split(fields[6], ":")[1]
-			passport["pid"] = strings.Split(fields[7], ":")[1]
-		} else if len(fields) == 7 &&
-			strings.HasPrefix(fields[0], "byr") &&
-			strings.HasPrefix(fields[1], "ecl") &&
-			strings.HasPrefix(fields[2], "eyr") &&
-			strings.HasPrefix(fields[3], "hcl") &&
-			strings.HasPrefix(fields[4], "hgt") &&
-			strings.HasPrefix(fields[5], "iyr") &&
-			strings.HasPrefix(fields[6], "pid") {
-			passport["byr"] = strings.Split(fields[0], ":")[1]
-			passport["ecl"] = strings.Split(fields[1], ":")[1]
-			passport["eyr"] = strings.Split(fields[2], ":")[1]
-			passport["hcl"] = strings.Split(fields[3], ":")[1]
-			passport["hgt"] = strings.Split(fields[4], ":")[1]
-			passport["iyr"] = strings.Split(fields[5], ":")[1]
-			passport["pid"] = strings.Split(fields[6], ":")[1]
+		passport, valid := parsePassport(&maybePassport)
+		if !valid {
+			continue
 		}
 
-		fmt.Println(passport)
 		if !valid4Digits.MatchString(passport["byr"]) {
 			continue
 		}
@@ -143,7 +119,7 @@ func SolveTask2(input *[]string) int {
 	return count
 }
 
-// Run day3
+// Run day4
 func Run() {
 	input := Input()
 

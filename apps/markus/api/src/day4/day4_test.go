@@ -31,7 +31,7 @@ iyr:2011 ecl:brn hgt:59in
 	assert.Equal(t, 2, result)
 }
 
-func xTestSolveTask2_invalid(t *testing.T) {
+func TestSolveTask2_invalid(t *testing.T) {
 	input := strings.Split(`eyr:1972 cid:100
 	hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926
 
