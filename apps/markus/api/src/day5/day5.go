@@ -54,7 +54,6 @@ func SolveTask1(input *[]string) int {
 func SolveTask2(input *[]string) int {
 	seatIds := make([]int, len(*input))
 	for i, pass := range *input {
-		fmt.Println("pass", pass)
 		seatIds[i] = ComputeSeatID(pass)
 	}
 
