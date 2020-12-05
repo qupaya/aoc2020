@@ -1,0 +1,52 @@
+name: Main CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Node.js 14.15.1
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.15.1
+
+      - name: Set up Go 1.15
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.15
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Get Go dependencies
+        run: |
+          go get -v -t -d ./...
+          if [ -f Gopkg.toml ]; then
+              curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+              dep ensure
+          fi
+
+      - name: Get Node dependencies
+        run: npm ci
+
+      - name: Lint all the things
+        run: npm run nx -- run-many --all --target=lint
+
+      - name: Test all the things
+        run: |
+          npm run nx -- run-many --all --target=test
+          echo '———————————————————————————————————————————————'
+          echo ''
+          echo 'run go tests in an extra step, because the nx-go builder does not catch them'
+          echo ''
+          echo '> go test -v ./...'
+          go test -v ./...
+
+      - name: Build all the things
+        run: npm run nx -- run-many --all --target=build --prod
