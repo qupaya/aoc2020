@@ -2,9 +2,7 @@ name: Go
 
 on:
   push:
-    branches: [main, markus]
-  pull_request:
-    branches: [main, markus, feature/**]
+    branches: [markus]
 
 jobs:
   build:
@@ -27,8 +25,11 @@ jobs:
               dep ensure
           fi
 
-      - name: Build
-        run: go build -v ./...
-
       - name: Test
         run: go test -v ./...
+
+      - name: Build
+        run: go build ./apps/markus/api/src/main.go
+
+      - name: Run
+        run: ./main
