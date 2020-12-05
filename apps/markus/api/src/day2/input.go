@@ -4,8 +4,7 @@ import "strings"
 
 // Input of day 2
 func Input() []string {
-	return strings.Fields(`
-		8-9 x: xxxxxxxrk
+	return strings.Split(`8-9 x: xxxxxxxrk
 		5-8 f: fxffmfff
 		2-5 c: ccspwpc
 		1-4 g: gggg
@@ -1004,5 +1003,5 @@ func Input() []string {
 		2-4 t: tttw
 		5-10 w: zzcwwwwwwkwwwqws
 		1-7 c: ccrmhdchwbr
-		7-11 g: xzgnggggrggrg`)
+		7-11 g: xzgnggggrggrg`, "\n")
 }
