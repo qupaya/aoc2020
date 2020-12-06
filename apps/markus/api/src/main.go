@@ -6,6 +6,7 @@ import (
 	"aoc/apps/markus/api/src/day3"
 	"aoc/apps/markus/api/src/day4"
 	"aoc/apps/markus/api/src/day5"
+	"aoc/apps/markus/api/src/day6"
 	"fmt"
 )
 
@@ -20,4 +21,6 @@ func main() {
 	day4.Run()
 	fmt.Println("day 5")
 	day5.Run()
+	fmt.Println("day 6")
+	day6.Run()
 }
