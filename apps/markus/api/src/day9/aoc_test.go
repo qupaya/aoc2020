@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func xTestFindFirstIllegalNumber(t *testing.T) {
+func TestFindFirstIllegalNumber(t *testing.T) {
 	input := strings.Fields(`35
 	20
 	15
