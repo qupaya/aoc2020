@@ -14,7 +14,6 @@ type SimultaneousCongruence []CongruenceConstraint
 
 // SolveSimultaneousCongruence search a number for which all constraints are satisfied (all modulus must be pairwise coprime)
 func SolveSimultaneousCongruence(input SimultaneousCongruence) int64 {
-
 	solution := new(big.Int)
 
 	M := int64(1)
@@ -34,8 +33,5 @@ func SolveSimultaneousCongruence(input SimultaneousCongruence) int64 {
 		solution.Add(solution, new(big.Int).Mul(e, remainder))
 	}
 
-	// a := new(big.Int).SetInt64(1)
-	// b := new(big.Int)
-	// new(big.Int).GCD(nil, nil, a, b)
 	return solution.Mod(solution, new(big.Int).SetInt64(M)).Int64()
 }

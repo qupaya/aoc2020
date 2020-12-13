@@ -79,7 +79,6 @@ func SolveTask2ChineseRemainderTheorem(input []string) int64 {
 			remainder := (modulus - i) % modulus
 			c := CongruenceConstraint{int64(remainder), int64(modulus)}
 			crtInput = append(crtInput, c)
-
 		}
 	}
 
@@ -88,10 +87,10 @@ func SolveTask2ChineseRemainderTheorem(input []string) int64 {
 
 // Run solve and pruint64 solutions
 func Run() {
-	// input := Input()
+	input := Input()
 
-	// fmt.Println("solution task 1:", SolveTask1(1006697, &[]int{13, 41, 641, 19, 17, 29, 661, 37, 23}))
-	// // fmt.Println("solution task 2:", SolveTask2BruteForce(100000000000000, input))
-	// fmt.Println("solution task 2:", SolveTask2ChineseRemainderTheorem(input))
+	fmt.Println("solution task 1:", SolveTask1(1006697, &[]int{13, 41, 641, 19, 17, 29, 661, 37, 23}))
+	// fmt.Println("solution task 2:", SolveTask2BruteForce(100000000000000, input))
+	fmt.Println("solution task 2:", SolveTask2ChineseRemainderTheorem(input))
 
 }
