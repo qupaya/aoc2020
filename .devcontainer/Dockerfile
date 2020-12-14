@@ -19,3 +19,6 @@ RUN go get -u github.com/go-delve/delve/cmd/dlv
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+
+RUN wget https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb \
+    && dpkg -i hyperfine_1.11.0_amd64.deb

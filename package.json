@@ -10,6 +10,7 @@
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
     "go:test": "gow test -timeout 10s ./...",
+    "benchmark:markus-api": "nx build markus-api && hyperfine --warmup 100 \"./dist/apps/markus/api -day=0\"",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
