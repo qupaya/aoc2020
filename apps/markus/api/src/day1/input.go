@@ -2,7 +2,7 @@ package day1
 
 // Input of day 1
 func Input() []int {
-	input := [...]int{
+	return []int{
 		1706,
 		1466,
 		1427,
@@ -204,7 +204,4 @@ func Input() []int {
 		1500,
 		1485,
 	}
-
-	return input[:]
-
 }

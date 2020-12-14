@@ -143,6 +143,6 @@ func SolveTask2(input *[]string) int {
 func Run() {
 	input := Input()
 
-	fmt.Println("solution task 1:", SolveTask1(&input))
-	fmt.Println("solution task 2:", SolveTask2(&input))
+	fmt.Println("solution task 1:", SolveTask1(input))
+	fmt.Println("solution task 2:", SolveTask2(input))
 }

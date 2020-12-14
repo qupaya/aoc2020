@@ -7,9 +7,9 @@ import (
 )
 
 // SolveTask1 of day 2
-func SolveTask1(input []string) int {
+func SolveTask1(input *[]string) int {
 	count := 0
-	for _, v := range input {
+	for _, v := range *input {
 		s := strings.Fields(v)
 		minmax := strings.Split(s[0], "-")
 		min, _ := strconv.Atoi(minmax[0])
@@ -28,9 +28,9 @@ func SolveTask1(input []string) int {
 }
 
 // SolveTask2 of day 2
-func SolveTask2(input []string) int {
+func SolveTask2(input *[]string) int {
 	count := 0
-	for _, v := range input {
+	for _, v := range *input {
 		// 1-3 a: abcde
 		s := strings.Fields(v)
 		minmax := strings.Split(s[0], "-")

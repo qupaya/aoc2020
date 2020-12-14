@@ -1,10 +1,12 @@
 package day4
 
-import "strings"
+import (
+	"aoc/apps/markus/api/src/utils"
+)
 
 // Input of day 4
-func Input() []string {
-	return strings.Split(`pid:827837505 byr:1976
+func Input() *[][]string {
+	input := `pid:827837505 byr:1976
 	hgt:187cm
 	iyr:2016
 	hcl:#fffffd
@@ -1002,5 +1004,7 @@ func Input() []string {
 	hcl:#bc352c pid:321838059 byr:1930 hgt:178cm cid:213 eyr:2023 ecl:amb
 	iyr:2017
 
-	hgt:173cm byr:1925 pid:070222017 iyr:2013 hcl:#ceb3a1 ecl:gry eyr:2024`, "\n\n")
+	hgt:173cm byr:1925 pid:070222017 iyr:2013 hcl:#ceb3a1 ecl:gry eyr:2024`
+
+	return utils.FieldsGrouped(&input)
 }

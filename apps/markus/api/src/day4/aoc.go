@@ -8,8 +8,7 @@ import (
 	"strings"
 )
 
-func parsePassport(input *string) (map[string]string, bool) {
-	fields := strings.Fields(*input)
+func parsePassport(fields []string) (map[string]string, bool) {
 
 	if len(fields) < 7 {
 		return nil, false
@@ -41,11 +40,11 @@ func parsePassport(input *string) (map[string]string, bool) {
 }
 
 // SolveTask1 count valid passports
-func SolveTask1(input *[]string) int {
+func SolveTask1(input *[][]string) int {
 	count := 0
 
 	for _, maybePassport := range *input {
-		if _, valid := parsePassport(&maybePassport); valid {
+		if _, valid := parsePassport(maybePassport); valid {
 			count++
 		}
 	}
@@ -54,7 +53,7 @@ func SolveTask1(input *[]string) int {
 }
 
 // SolveTask2 count valid passports with value evaluation
-func SolveTask2(input *[]string) int {
+func SolveTask2(input *[][]string) int {
 	valid4Digits := regexp.MustCompile(`^[0-9]{4}$`)
 	validHgt := regexp.MustCompile(`^[0-9]{3}cm|[0-9]{2}in$`)
 	validHcl := regexp.MustCompile(`^#[0-9a-f]{6}$`)
@@ -64,7 +63,7 @@ func SolveTask2(input *[]string) int {
 	count := 0
 
 	for _, maybePassport := range *input {
-		passport, valid := parsePassport(&maybePassport)
+		passport, valid := parsePassport(maybePassport)
 		if !valid {
 			continue
 		}
@@ -123,7 +122,7 @@ func SolveTask2(input *[]string) int {
 func Run() {
 	input := Input()
 
-	fmt.Println("solution task 1:", SolveTask1(&input))
-	fmt.Println("solution task 2:", SolveTask2(&input))
+	fmt.Println("solution task 1:", SolveTask1(input))
+	fmt.Println("solution task 2:", SolveTask2(input))
 
 }

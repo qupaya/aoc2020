@@ -1,10 +1,12 @@
 package day6
 
-import "strings"
+import (
+	"aoc/apps/markus/api/src/utils"
+)
 
 // Input of day 4
-func Input() []string {
-	return strings.Split(`we
+func Input() *[][]string {
+	input := `we
 	euw
 	we
 
@@ -2251,5 +2253,7 @@ func Input() []string {
 	nbj
 
 	vxyjehaou
-	wozap`, "\n\n")
+	wozap`
+
+	return utils.LinesGrouped(&input)
 }

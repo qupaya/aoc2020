@@ -1,7 +1,7 @@
 package day6
 
 import (
-	"strings"
+	"aoc/apps/markus/api/src/utils"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -22,7 +22,7 @@ func TestCountUnion(t *testing.T) {
 }
 
 func TestSolveTask1(t *testing.T) {
-	input := strings.Split(`abc
+	input := `abc
 
 	a
 	b
@@ -36,12 +36,13 @@ func TestSolveTask1(t *testing.T) {
 	a
 	a
 
-	b`, "\n\n")
-	assert.Equal(t, 11, SolveTask1(&input))
+	b`
+
+	assert.Equal(t, 11, SolveTask1(utils.LinesGrouped(&input)))
 }
 
 func TestSolveTask2(t *testing.T) {
-	input := strings.Split(`abc
+	input := `abc
 
 	a
 	b
@@ -55,6 +56,7 @@ func TestSolveTask2(t *testing.T) {
 	a
 	a
 
-	b`, "\n\n")
-	assert.Equal(t, 6, SolveTask2(&input))
+	b`
+
+	assert.Equal(t, 6, SolveTask2(utils.LinesGrouped(&input)))
 }

@@ -27,5 +27,5 @@ func TestSolveTask2_example2(t *testing.T) {
 
 func TestSolveTask2_input(t *testing.T) {
 	input := Input()
-	assert.Equal(t, 1322306994176, SolveTask2(&input))
+	assert.Equal(t, 1322306994176, SolveTask2(input))
 }
