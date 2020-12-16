@@ -55,29 +55,32 @@ func solveBruteForce2(input *[]int, max int) int {
 }
 
 func solveBruteForce3(input *[]int, max int) int {
-	numbers := make([]int, max)
-	backtrack := make([]int, max)
-	copy(numbers, *input)
-	lastOccurrence := make([]int, max)
+
+	lastSpoken := (*input)[len(*input)-1]
+
+	// 1-based index of the turn in which lastSpoken was last spoken before.
+	// If spoken for the first time, it is the index of the turn itself.
+	b := len(*input)
+
+	lastSpokenInTurnMap := make([]int, max)
 
 	for i := range *input {
-		backtrack[i] = i + 1
-		lastOccurrence[(*input)[i]] = i + 1
+		lastSpokenInTurnMap[(*input)[i]] = i + 1
 	}
 
 	for i := len(*input); i < max; i++ {
-		numbers[i] = (i - backtrack[i-1])
+		lastSpoken = (i - b)
 
-		lastOcc := lastOccurrence[numbers[i]]
-		if lastOcc != 0 {
-			backtrack[i] = lastOcc
+		lastInTurn := lastSpokenInTurnMap[lastSpoken]
+		if lastInTurn != 0 {
+			b = lastInTurn
 		} else {
-			backtrack[i] = i + 1
+			b = i + 1
 		}
-		lastOccurrence[numbers[i]] = i + 1
+		lastSpokenInTurnMap[lastSpoken] = i + 1
 	}
 
-	return numbers[len(numbers)-1]
+	return lastSpoken
 }
 
 // SolveTask1 solve aoc task 1
