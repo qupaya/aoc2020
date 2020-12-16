@@ -1,6 +1,9 @@
 package utils
 
-import "strings"
+import (
+	"strconv"
+	"strings"
+)
 
 // Lines get a list of all lines, each trimmed
 func Lines(s *string) *[]string {
@@ -32,4 +35,13 @@ func FieldsGrouped(s *string) *[][]string {
 		groups[i] = strings.Fields(group)
 	}
 	return &groups
+}
+
+// ConvertToInts ConvertToInts
+func ConvertToInts(input *[]string) *[]int {
+	numbers := make([]int, len(*input))
+	for i, n := range *input {
+		numbers[i], _ = strconv.Atoi(n)
+	}
+	return &numbers
 }

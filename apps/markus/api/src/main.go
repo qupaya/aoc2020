@@ -8,6 +8,7 @@ import (
 	"aoc/apps/markus/api/src/day13"
 	"aoc/apps/markus/api/src/day14"
 	"aoc/apps/markus/api/src/day15"
+	"aoc/apps/markus/api/src/day16"
 	"aoc/apps/markus/api/src/day2"
 	"aoc/apps/markus/api/src/day3"
 	"aoc/apps/markus/api/src/day4"
@@ -38,6 +39,7 @@ func main() {
 		day13.Run,
 		day14.Run,
 		day15.Run,
+		day16.Run,
 	}
 
 	day := flag.Uint("day", 0, "[OPTIONAL] number of day to run or 0 to run all days")
@@ -82,5 +84,7 @@ func main() {
 		day14.Run()
 		fmt.Println("day 15")
 		day15.Run()
+		fmt.Println("day 16")
+		day16.Run()
 	}
 }
